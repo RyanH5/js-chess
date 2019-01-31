@@ -1,0 +1,26 @@
+* {
+  margin: 0px;
+  padding: 0px;
+  box-sizing: border-box;
+}
+
+h1 {
+  text-align: center;
+  margin: 10px;
+}
+.game {
+  -moz-box-shadow:    3px 3px 5px 6px #ccc;
+  -webkit-box-shadow: 3px 3px 5px 6px #ccc;
+  box-shadow:         3px 3px 5px 6px #ccc;
+  margin: auto;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.square {
+  -moz-box-shadow: 5px 5px 5px rgba(68,68,68,0.6);
+	-webkit-box-shadow: 5px 5px 5px rgba(68,68,68,0.6);
+  box-shadow: 5px 5px 5px rgba(68,68,68,0.6);
+  height: 80px;
+  width: 80px;
+}
