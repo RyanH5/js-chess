@@ -4,14 +4,21 @@
   box-sizing: border-box;
 }
 
+body {
+  background-image: url('./assets/blurredPark.jpg');
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
 h1 {
   text-align: center;
   margin: 10px;
+  color: #663300
 }
 .game {
-  -moz-box-shadow:    3px 3px 5px 6px #ccc;
-  -webkit-box-shadow: 3px 3px 5px 6px #ccc;
-  box-shadow:         3px 3px 5px 6px #ccc;
+  /* -moz-box-shadow:    3px 3px 5px 6px #663300;
+  -webkit-box-shadow: 3px 3px 5px 6px #663300;
+  box-shadow:         3px 3px 5px 6px #663300; */
   margin: auto;
   display: flex;
   flex-wrap: wrap;
@@ -21,6 +28,11 @@ h1 {
   -moz-box-shadow: 5px 5px 5px rgba(68,68,68,0.6);
 	-webkit-box-shadow: 5px 5px 5px rgba(68,68,68,0.6);
   box-shadow: 5px 5px 5px rgba(68,68,68,0.6);
-  height: 80px;
-  width: 80px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.piece {
+  font-size: 20px;
 }
