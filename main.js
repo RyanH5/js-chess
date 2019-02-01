@@ -7,6 +7,8 @@ class Game {
     this.size = size;
     this.board = [];
     this.player1Turn = true;
+    this.activePiece = null;
+    this.move = this.move.bind(this);
   }
 
   makeBoard() {
@@ -28,25 +30,24 @@ class Game {
     this.board[7] = [
       new Rook('2'), new Bishop('2'), new Knight('2'), new King('2'), new Queen('2'),new Knight('2'), new Bishop('2'), new Rook('2')
     ]
-    console.log(this.board)
     this.displayBoard()
   }
 
   displayBoard() {
+    const gameel = document.getElementById('game')
+    gameel.innerHTML = "";
     this.board.forEach((array, i) => {
       array.forEach((position, j) => {
         const square = document.createElement('div');
-        square.setAttribute('id', `[${i}, ${j}]`)
-        square.classList.add('square')
-        document.getElementById('game').appendChild(square);
+        square.setAttribute('id', `[${i},${j}]`)
+        square.classList.add('square');
+        gameel.appendChild(square);
         if ((i + j) % 2) {
           square.style.background = '#663300';
         } else {
           square.style.background = 'rgb(233, 216, 189)';
-
         }
         if (position) {
-          console.log(position.name)
           square.textContent = position.name;
           if (position.player === 'P1') {
             square.classList.add('p1')
@@ -56,10 +57,46 @@ class Game {
         }
       })
     })
+    console.log(this.board)
+  }
+
+  updateGame(from, to){
+    if (!this.validMove(from,to)){
+      console.log("bad move")
+    } else {
+      let piece = this.board[from[1]][from[3]];
+      this.board[from[1]][from[3]] = null;
+      this.board[to[1]][to[3]] = piece;
+      this.displayBoard()
+    }
+  }
+
+
+
+  validMove(to,from) {
+    return true
   }
 
   move(e) {
-    console.log(e)
+    let squareId = document.getElementById(e.target.id);
+    if (this.activePiece) {
+      this.updateGame(this.activePiece,e.target.id)
+      console.log(this.activePiece)
+      console.log(e.target)
+      this.activePiece = null;
+    } else {
+      if (this.board[squareId.id[1]][squareId.id[3]]) {
+        squareId.style.background = 'red';
+        this.activePiece = squareId.id;
+        
+      }
+      
+      
+    }
+
+
+    
+
   }
 }
 
@@ -73,6 +110,9 @@ class Pawn extends Piece {
   constructor(player) {
     super(player)
     this.name = 'Pawn';
+  }
+  validateMove() {
+
   }
 }
 
