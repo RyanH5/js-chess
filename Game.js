@@ -5,6 +5,7 @@ class Game {
     this.player1Turn = true;
     this.activePiece = null;
     this.move = this.move.bind(this);
+    this.validMoves = []
   }
 
   makeBoard() {
@@ -26,7 +27,7 @@ class Game {
     this.board[7] = [
       new Rook('P2'), new Bishop('P2'), new Knight('P2'), new King('P2'), new Queen('P2'),new Knight('P2'), new Bishop('P2'), new Rook('P2')
     ]
-    this.displayBoard()
+    this.displayBoard();
   }
 
   displayBoard() {
@@ -85,8 +86,9 @@ class Game {
         var name = this.activePiece.innerHTML;
         switch(name) {
           case 'Pawn':
-          let pawn1 = new Pawn('P2')
-          pawn1.validMoves(this.activePiece)
+          let pawn2 = new Pawn('P2')
+          this.validMoves = pawn2.validMoves(this.activePiece);
+          console.log(this.validMoves)
         }
       }     
     }
@@ -111,18 +113,26 @@ class Pawn extends Piece {
     var location = JSON.parse(piece.id);
     console.log(location)
     if (this.player === 'P2') {
-      if (this.firstMove) {
-        const validMoves = [];
-        console.log(newGame.board[location[0+1]][location[1]])
-        if (newGame.board[location[0-1]][location[1]] === null ) {
-          validMoves.push(newGame.board[location[0-1]][location[1]])
+      const validMoves = [];
+      if (!this.firstMove) {
+        if (newGame.board[location[0]-1][location[1]] === null ) {
+          let subArr = [location[0]-1,location[1]]          
+          validMoves.push(subArr);
         }
-        if (newGame.board[location[0-2]][location[1]] === null ) {
-          validMoves.push(newGame.board[location[0+2]][location[1]])
+        
+      } else {
+        console.log([location[0]-2],[location[1]])
+        if (newGame.board[location[0]-2][location[1]] === null) {
+          let subArr = [location[0]-2,location[1]]
+          validMoves.push(subArr);
         }
-        console.log(validMoves)
+        if (newGame.board[location[0]-1][location[1]] === null ) {
+          let subArr = [location[0]-1,location[1]]
+          validMoves.push(subArr);
+        }
         this.firstMove = false;
       }
+      return validMoves;
     }
   }
 }
