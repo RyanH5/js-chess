@@ -85,7 +85,7 @@ class Game {
         var name = this.activePiece.innerHTML;
         switch(name) {
           case 'Pawn':
-          let pawn1 = new Pawn()
+          let pawn1 = new Pawn('P2')
           pawn1.validMoves(this.activePiece)
         }
       }     
@@ -107,20 +107,22 @@ class Pawn extends Piece {
   }
   validMoves(piece) {
     console.log(this)
-    console.log(piece)
     console.log(newGame.board)
-    console.log(this.name)
-    console.log(this.firstMove)
     var location = JSON.parse(piece.id);
     console.log(location)
-    if (this.firstMove) {
-      const validMoves = []
-      console.log(this.player)
-      if (newGame.board[location[0]-1], location[1] == null ) {
-        validMoves.push(newGame.board[location[0]-1], location[1])
+    if (this.player === 'P2') {
+      if (this.firstMove) {
+        const validMoves = [];
+        console.log(newGame.board[location[0+1]][location[1]])
+        if (newGame.board[location[0-1]][location[1]] === null ) {
+          validMoves.push(newGame.board[location[0-1]][location[1]])
+        }
+        if (newGame.board[location[0-2]][location[1]] === null ) {
+          validMoves.push(newGame.board[location[0+2]][location[1]])
+        }
+        console.log(validMoves)
+        this.firstMove = false;
       }
-      if (newGame.board[location[0]+2], location[1])
-      this.firstMove = false;
     }
   }
 }
