@@ -1,0 +1,19 @@
+{
+  "name": "js-chess",
+  "version": "1.0.0",
+  "description": "",
+  "main": "Game.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/RyanH5/js-chess.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/RyanH5/js-chess/issues"
+  },
+  "homepage": "https://github.com/RyanH5/js-chess#readme"
+}
